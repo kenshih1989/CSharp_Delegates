@@ -4,6 +4,8 @@
     {
         delegate Car CarFactoryDelegate(int Id, string type);
         delegate Car CarCreationDelegate(string type);
+        delegate void RepairICECarDelegate(ICECar iceCar);
+        delegate void RepairEVCarDelegate(EVCar veCar);
 
         static void Main(string[] args)
         {
@@ -33,6 +35,14 @@
             Console.WriteLine("Contravariance allows a method to accept parameters of a less derived type than the delegate's parameter type.");
             Console.WriteLine("Assigning a method that accepts a Car to a delegate that expects a method accepting an ICECar.");
             Console.WriteLine();
+
+            RepairICECarDelegate repairICEDel = CarFactory.RepairAnyCar;
+            RepairEVCarDelegate repairEVDel = CarFactory.RepairAnyCar;
+            ICECar myAudi = new ICECar { Id = 1, Name = "Audi R8" };
+            EVCar myTesla = new EVCar { Id = 2, Name="Tesla Model 3" };
+            repairICEDel(myAudi);
+            repairEVDel(myTesla);
+
 
             #region random car generation
             Console.WriteLine();
@@ -84,6 +94,14 @@
                 _ => throw new ArgumentException("Invalid car type")
             };
         }
+        public static void RepairAnyCar(Car generalCar)
+        {
+            Console.WriteLine($"Repairing: {generalCar.Name}. No matter ICECar or EVCar,I can repair them!");
+        }
+        //public static void RepairICECar(ICECar iceCar)
+        //{
+        //    Console.WriteLine($"Repairing: {iceCar.Name}. I only repair ICECar!");
+        //}
     }
 
     public abstract class Car
