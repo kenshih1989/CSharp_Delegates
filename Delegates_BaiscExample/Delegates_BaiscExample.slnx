@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="../Delegates_ClubMembershipApplication/Delegates_ClubMembershipApplication.csproj" />
+  <Project Path="../Delegates_CovarianceAndContravariance/Delegates_CovarianceAndContravariance.csproj" />
+  <Project Path="../Delegates_FuncActionPredicate/Delegates_FuncActionPredicate.csproj" />
   <Project Path="Delegates_BaiscExample.csproj" />
 </Solution>
